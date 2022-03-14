@@ -25,6 +25,9 @@
                 <MenuItem Header="Create rectangles"
                           Click="CreateRectangles_OnClick"/>
                 <Separator/>
+                <MenuItem Header="Save image to disk"
+                          Click="SaveCanvasToDisk_OnClick"/>
+                <Separator/>
                 <MenuItem Header="Exit"
                           Click="Exit_OnClick"/>
             </MenuItem>
