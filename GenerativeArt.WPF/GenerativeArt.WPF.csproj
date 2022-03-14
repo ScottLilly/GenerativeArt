@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GenerativeArt.Core\GenerativeArt.Core.csproj" />
     <ProjectReference Include="..\GenerativeArt.Models\GenerativeArt.Models.csproj" />
   </ItemGroup>
 

@@ -31,9 +31,10 @@
         </Menu>
 
         <Canvas Grid.Row="1" Grid.Column="0"
+                x:Name="ShapeCanvas"
                 HorizontalAlignment="Left"
                 Margin="5,5,5,5"
-                Background="DarkGray"
+                Background="LightGray"
                 Height="800"
                 Width="800"/>
 
