@@ -1,0 +1,70 @@
+﻿<Window x:Class="GenerativeArt.WPF.CanvasView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:GenerativeArt.ViewModels;assembly=GenerativeArt.ViewModels"
+        xmlns:models="clr-namespace:GenerativeArt.Models;assembly=GenerativeArt.Models"
+        d:DataContext="{d:DesignInstance viewModels:CanvasViewModel}"
+        mc:Ignorable="d"
+        Title="Generative Art"
+        FontSize="11pt"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        MinWidth="1280">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="810"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.Row="0" Grid.Column="0"
+              FontSize="11pt">
+            <MenuItem Header="File">
+                <MenuItem Header="Save image to disk"
+                          Click="SaveCanvasToDisk_OnClick"/>
+                <Separator/>
+                <MenuItem Header="Exit"
+                          Click="Exit_OnClick"/>
+            </MenuItem>
+        </Menu>
+
+        <Canvas Grid.Row="1" Grid.Column="0"
+                x:Name="ShapeCanvas"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="5,5,5,5"
+                Background="LightGray"
+                Height="{Binding Height}"
+                Width="{Binding Width}">
+
+            <ItemsControl ItemsSource="{Binding Shapes}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:RectangleShape}">
+                        <Canvas>
+                            <Rectangle Height="{Binding Height}"
+                                       Width="{Binding Width}"
+                                       Fill="{Binding FillColor}"
+                                       Canvas.Top="{Binding Top}"
+                                       Canvas.Left="{Binding Left}"
+                                       RenderTransformOrigin="0.5, 0.5"
+                                       StrokeThickness="2"
+                                       Stroke="Black">
+                                <Rectangle.RenderTransform>
+                                    <RotateTransform Angle="{Binding RotationAngle}"/>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                        </Canvas>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Canvas>
+
+    </Grid>
+
+</Window>

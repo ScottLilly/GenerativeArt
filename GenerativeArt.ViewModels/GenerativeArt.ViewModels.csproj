@@ -1,16 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GenerativeArt.Core\GenerativeArt.Core.csproj" />
     <ProjectReference Include="..\GenerativeArt.Models\GenerativeArt.Models.csproj" />
-    <ProjectReference Include="..\GenerativeArt.ViewModels\GenerativeArt.ViewModels.csproj" />
+    <ProjectReference Include="..\GenerativeArt.Services\GenerativeArt.Services.csproj" />
   </ItemGroup>
 
 </Project>
