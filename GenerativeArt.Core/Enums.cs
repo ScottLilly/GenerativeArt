@@ -4,6 +4,8 @@ public static class Enums
 {
     public enum ShapeType
     {
-        Rectangle
+        Unknown,
+        Rectangle,
+        Ellipse
     }
 }

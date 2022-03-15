@@ -11,7 +11,44 @@
         FontSize="11pt"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
-        MinWidth="1280">
+        MinWidth="1280"
+        KeyDown="MainWindow_OnKeyDown">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type models:RectangleShape}">
+            <Canvas>
+                <Rectangle Height="{Binding Height}"
+                           Width="{Binding Width}"
+                           Fill="{Binding FillColor}"
+                           Canvas.Top="{Binding Top}"
+                           Canvas.Left="{Binding Left}"
+                           RenderTransformOrigin="0.5, 0.5"
+                           StrokeThickness="2"
+                           Stroke="Black">
+                    <Rectangle.RenderTransform>
+                        <RotateTransform Angle="{Binding RotationAngle}"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+            </Canvas>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type models:EllipseShape}">
+            <Canvas>
+                <Ellipse Height="{Binding Radius}"
+                         Width="{Binding Radius}"
+                         Fill="{Binding FillColor}"
+                         Canvas.Top="{Binding Top}"
+                         Canvas.Left="{Binding Left}"
+                         RenderTransformOrigin="0.5, 0.5"
+                         StrokeThickness="2"
+                         Stroke="Black">
+                    <Ellipse.RenderTransform>
+                        <RotateTransform Angle="{Binding RotationAngle}"/>
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+            </Canvas>
+        </DataTemplate>
+    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -19,12 +56,15 @@
             <RowDefinition Height="810"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Menu Grid.Row="0" Grid.Column="0"
               FontSize="11pt">
             <MenuItem Header="File">
+                <MenuItem Header="Clear shapes"
+                          Click="ClearShapes_OnClick"/>
                 <MenuItem Header="Save image to disk"
                           Click="SaveCanvasToDisk_OnClick"/>
                 <Separator/>
@@ -42,29 +82,18 @@
                 Height="{Binding Height}"
                 Width="{Binding Width}">
 
-            <ItemsControl ItemsSource="{Binding Shapes}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:RectangleShape}">
-                        <Canvas>
-                            <Rectangle Height="{Binding Height}"
-                                       Width="{Binding Width}"
-                                       Fill="{Binding FillColor}"
-                                       Canvas.Top="{Binding Top}"
-                                       Canvas.Left="{Binding Left}"
-                                       RenderTransformOrigin="0.5, 0.5"
-                                       StrokeThickness="2"
-                                       Stroke="Black">
-                                <Rectangle.RenderTransform>
-                                    <RotateTransform Angle="{Binding RotationAngle}"/>
-                                </Rectangle.RenderTransform>
-                            </Rectangle>
-                        </Canvas>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <ItemsControl ItemsSource="{Binding Shapes}"/>
 
         </Canvas>
 
+        <StackPanel Grid.Row="1" Grid.Column="1"
+                    Orientation="Vertical">
+            <Button Content="Add Rectangle"
+                    Click="AddRectangle_OnClick"/>
+            <Button Content="Add Ellipse"
+                    Click="AddEllipse_OnClick"/>
+
+        </StackPanel>
     </Grid>
 
 </Window>

@@ -35,6 +35,32 @@ public static class RandomShapeGenerator
         };
     }
 
+    public static EllipseShape GetEllipse(int canvasMaxHeight, int canvasMaxWidth)
+    {
+        int radius = RngCreator.GetNumberBetween(25, 100);
+
+        var maxRectangleDimension = Math.Max(radius, radius);
+
+        int max =
+            (int)Math.Max(
+                (canvasMaxHeight - maxRectangleDimension),
+                (canvasMaxWidth - maxRectangleDimension));
+
+        var edgeOffset = (int)(maxRectangleDimension / 2);
+
+        var top = RngCreator.GetNumberBetween(1 + edgeOffset, max);
+        var left = RngCreator.GetNumberBetween(1, max);
+
+        return new EllipseShape
+        {
+            FillColor = GetRandomColor(),
+            Radius = radius,
+            RotationAngle = 0,
+            Top = top,
+            Left = left
+        };
+    }
+
     private static string GetRandomColor()
     {
         return ColorTranslator.ToHtml(Color.FromArgb(255,

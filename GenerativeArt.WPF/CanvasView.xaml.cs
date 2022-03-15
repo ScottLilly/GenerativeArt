@@ -1,5 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using GenerativeArt.ViewModels;
@@ -9,11 +12,24 @@ namespace GenerativeArt.WPF;
 
 public partial class CanvasView : Window
 {
+    private CanvasViewModel VM => DataContext as CanvasViewModel;
+
+    private readonly Dictionary<Key, Action> _userInputActions =
+        new Dictionary<Key, Action>();
+
     public CanvasView()
     {
         InitializeComponent();
 
         DataContext = new CanvasViewModel();
+
+        _userInputActions.Add(Key.C, () => AddEllipse_OnClick(this, new RoutedEventArgs()));
+        _userInputActions.Add(Key.R, () => AddRectangle_OnClick(this, new RoutedEventArgs()));
+    }
+
+    private void ClearShapes_OnClick(object sender, RoutedEventArgs e)
+    {
+        VM.ClearShapes();
     }
 
     private void SaveCanvasToDisk_OnClick(object sender, RoutedEventArgs e)
@@ -50,5 +66,25 @@ public partial class CanvasView : Window
     private void Exit_OnClick(object sender, RoutedEventArgs e)
     {
         Close();
+    }
+
+    private void AddRectangle_OnClick(object sender, RoutedEventArgs e)
+    {
+        VM.AddRectangle();
+    }
+
+    private void AddEllipse_OnClick(object sender, RoutedEventArgs e)
+    {
+        VM.AddEllipse();
+    }
+
+    private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
+    {
+        if (_userInputActions.ContainsKey(e.Key))
+        {
+            _userInputActions[e.Key].Invoke();
+
+            e.Handled = true;
+        }
     }
 }

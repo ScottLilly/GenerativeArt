@@ -15,10 +15,20 @@ public class CanvasViewModel
     {
         Height = 800;
         Width = 800;
+    }
 
-        for (int i = 0; i < 100; i++)
-        {
-            Shapes.Add(RandomShapeGenerator.GetRectangle(Height, Width));
-        }
+    public void ClearShapes()
+    {
+        Shapes.Clear();
+    }
+
+    public void AddRectangle()
+    {
+        Shapes.Add(RandomShapeGenerator.GetRectangle(Height, Width));
+    }
+
+    public void AddEllipse()
+    {
+        Shapes.Add(RandomShapeGenerator.GetEllipse(Height, Width));
     }
 }
