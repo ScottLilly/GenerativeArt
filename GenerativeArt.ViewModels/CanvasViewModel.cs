@@ -6,6 +6,8 @@ namespace GenerativeArt.ViewModels;
 
 public class CanvasViewModel
 {
+    private readonly IRectangleGenerator _rectangleGenerator;
+
     public int Height { get; set; }
     public int Width { get; set; }
     public ObservableCollection<IShape> Shapes { get; } =
@@ -15,6 +17,9 @@ public class CanvasViewModel
     {
         Height = 800;
         Width = 800;
+
+        _rectangleGenerator =
+            ShapeGeneratorFactory.GetRectangleGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
     }
 
     public void ClearShapes()
@@ -24,7 +29,7 @@ public class CanvasViewModel
 
     public void AddRectangle()
     {
-        Shapes.Add(RandomShapeGenerator.GetRectangle(Height, Width));
+        Shapes.Add(_rectangleGenerator.GetRectangle());
     }
 
     public void AddEllipse()
