@@ -1,11 +1,19 @@
 ﻿using GenerativeArt.Core;
-using GenerativeArt.Models;
 
-namespace GenerativeArt.Services;
+namespace GenerativeArt.Models;
 
-public static class RandomShapeGenerator
+public class RandomEllipseGenerator : IEllipseGenerator
 {
-    public static EllipseShape GetEllipse(int canvasMaxHeight, int canvasMaxWidth)
+    private readonly int _maxCanvasHeight;
+    private readonly int _maxCanvasWidth;
+
+    public RandomEllipseGenerator(int maxCanvasHeight, int maxCanvasWidth)
+    {
+        _maxCanvasHeight = maxCanvasHeight;
+        _maxCanvasWidth = maxCanvasWidth;
+    }
+
+    public EllipseShape GetEllipse()
     {
         int radius = Randomizer.GetRandomNumberBetween(25, 100);
 
@@ -13,8 +21,8 @@ public static class RandomShapeGenerator
 
         int max =
             (int)Math.Max(
-                (canvasMaxHeight - maxRectangleDimension),
-                (canvasMaxWidth - maxRectangleDimension));
+                (_maxCanvasHeight - maxRectangleDimension),
+                (_maxCanvasWidth - maxRectangleDimension));
 
         var edgeOffset = (int)(maxRectangleDimension / 2);
 

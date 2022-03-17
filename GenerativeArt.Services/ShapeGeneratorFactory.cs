@@ -20,4 +20,16 @@ public static class ShapeGeneratorFactory
                 throw new ArgumentException("Invalid 'type' value");
         }
     }
+
+    public static IEllipseGenerator GetEllipseGenerator(GeneratorType type,
+        int maxCanvasHeight, int maxCanvasWidth)
+    {
+        switch (type)
+        {
+            case GeneratorType.Random:
+                return new RandomEllipseGenerator(maxCanvasHeight, maxCanvasWidth);
+            default:
+                throw new ArgumentException("Invalid 'type' value");
+        }
+    }
 }
