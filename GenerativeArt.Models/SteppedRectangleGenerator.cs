@@ -1,4 +1,5 @@
 ﻿using GenerativeArt.Core;
+using GenerativeArt.Core.Enums;
 
 namespace GenerativeArt.Models;
 
@@ -7,8 +8,8 @@ public class SteppedRectangleGenerator : IRectangleGenerator
     private readonly int _canvasMaxHeight;
     private readonly int _canvasMaxWidth;
 
-    private Enums.LeftRightDirection _leftRightDirection = Enums.LeftRightDirection.MoveToRight;
-    private Enums.TopBottomDirection _topBottomDirection = Enums.TopBottomDirection.MoveToBottom;
+    private LeftRightDirection _leftRightDirection = LeftRightDirection.MoveToRight;
+    private TopBottomDirection _topBottomDirection = TopBottomDirection.MoveToBottom;
 
     private RectangleShape _latestRectangle;
 
@@ -54,20 +55,20 @@ public class SteppedRectangleGenerator : IRectangleGenerator
         }
 
         // Current rectangle goes below canvas bottom
-        if (_topBottomDirection == Enums.TopBottomDirection.MoveToBottom &&
+        if (_topBottomDirection == TopBottomDirection.MoveToBottom &&
             LatestRectangleMidpointY() + rectangleHeight > _canvasMaxHeight)
         {
-            _topBottomDirection = Enums.TopBottomDirection.MoveToTop;
+            _topBottomDirection = TopBottomDirection.MoveToTop;
         }
 
         // Current rectangle goes above canvas top
-        if (_topBottomDirection == Enums.TopBottomDirection.MoveToTop &&
+        if (_topBottomDirection == TopBottomDirection.MoveToTop &&
             LatestRectangleMidpointY() - rectangleHeight < 1)
         {
-            _topBottomDirection = Enums.TopBottomDirection.MoveToBottom;
+            _topBottomDirection = TopBottomDirection.MoveToBottom;
         }
 
-        return _topBottomDirection == Enums.TopBottomDirection.MoveToBottom
+        return _topBottomDirection == TopBottomDirection.MoveToBottom
             ? LatestRectangleMidpointY()
             : LatestRectangleMidpointY() - rectangleHeight;
     }
@@ -80,20 +81,20 @@ public class SteppedRectangleGenerator : IRectangleGenerator
         }
 
         // Current rectangle goes past canvas right
-        if (_leftRightDirection == Enums.LeftRightDirection.MoveToRight &&
+        if (_leftRightDirection == LeftRightDirection.MoveToRight &&
             LatestRectangleMidpointX() + rectangleWidth > _canvasMaxWidth)
         {
-            _leftRightDirection = Enums.LeftRightDirection.MoveToLeft;
+            _leftRightDirection = LeftRightDirection.MoveToLeft;
         }
 
         // Current rectangle goes past canvas left
-        if (_leftRightDirection == Enums.LeftRightDirection.MoveToLeft &&
+        if (_leftRightDirection == LeftRightDirection.MoveToLeft &&
             LatestRectangleMidpointX() - rectangleWidth < 1)
         {
-            _leftRightDirection = Enums.LeftRightDirection.MoveToRight;
+            _leftRightDirection = LeftRightDirection.MoveToRight;
         }
 
-        return _leftRightDirection == Enums.LeftRightDirection.MoveToRight
+        return _leftRightDirection == LeftRightDirection.MoveToRight
             ? LatestRectangleMidpointX()
             : LatestRectangleMidpointX() - rectangleWidth;
     }

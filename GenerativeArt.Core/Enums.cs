@@ -1,22 +1,19 @@
-﻿namespace GenerativeArt.Core;
+﻿namespace GenerativeArt.Core.Enums;
 
-public static class Enums
+public enum ShapeType
 {
-    public enum ShapeType
-    {
-        Unknown,
-        Rectangle,
-        Ellipse
-    }
-    public enum LeftRightDirection
-    {
-        MoveToLeft,
-        MoveToRight
-    }
+    Unknown,
+    Rectangle,
+    Ellipse
+}
+public enum LeftRightDirection
+{
+    MoveToLeft,
+    MoveToRight
+}
 
-    public enum TopBottomDirection
-    {
-        MoveToTop,
-        MoveToBottom
-    }
+public enum TopBottomDirection
+{
+    MoveToTop,
+    MoveToBottom
 }

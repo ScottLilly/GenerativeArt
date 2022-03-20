@@ -1,11 +1,11 @@
-﻿using GenerativeArt.Core;
+﻿using GenerativeArt.Core.Enums;
 
 namespace GenerativeArt.Models;
 
 public class EllipseShape : BaseShape
 {
-    public override Enums.ShapeType Type =>
-        Enums.ShapeType.Ellipse;
+    public override ShapeType Type =>
+        ShapeType.Ellipse;
 
     public int Radius { get; init; }
 }

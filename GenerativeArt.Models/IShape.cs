@@ -1,10 +1,10 @@
-﻿using GenerativeArt.Core;
+﻿using GenerativeArt.Core.Enums;
 
 namespace GenerativeArt.Models;
 
 public interface IShape
 {
-    public Enums.ShapeType Type { get; }
+    public ShapeType Type { get; }
     public string FillColor { get; set; }
     public int Top { get; set; }
     public int Left { get; set; }

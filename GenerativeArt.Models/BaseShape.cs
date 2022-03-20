@@ -1,10 +1,10 @@
-﻿using GenerativeArt.Core;
+﻿using GenerativeArt.Core.Enums;
 
 namespace GenerativeArt.Models;
 
 public class BaseShape : IShape
 {
-    public virtual Enums.ShapeType Type => Enums.ShapeType.Unknown;
+    public virtual ShapeType Type => ShapeType.Unknown;
 
     public string? FillColor { get; set; }
     public int Top { get; set; }
