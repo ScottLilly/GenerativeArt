@@ -19,8 +19,10 @@ public class CanvasViewModel
         Height = 800;
         Width = 800;
 
+        //_rectangleGenerator =
+        //    ShapeGeneratorFactory.GetRectangleGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
         _rectangleGenerator =
-            ShapeGeneratorFactory.GetRectangleGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
+            ShapeGeneratorFactory.GetRectangleGenerator(ShapeGeneratorFactory.GeneratorType.Stepped, Height, Width);
         _ellipseGenerator =
             ShapeGeneratorFactory.GetEllipseGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
     }

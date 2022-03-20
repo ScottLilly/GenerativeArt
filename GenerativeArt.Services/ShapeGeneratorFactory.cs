@@ -6,7 +6,8 @@ public static class ShapeGeneratorFactory
 {
     public enum GeneratorType
     {
-        Random
+        Random,
+        Stepped
     }
 
     public static IRectangleGenerator GetRectangleGenerator(GeneratorType type,
@@ -16,6 +17,8 @@ public static class ShapeGeneratorFactory
         {
             case GeneratorType.Random:
                 return new RandomRectangleGenerator(maxCanvasHeight, maxCanvasWidth);
+            case GeneratorType.Stepped:
+                return new SteppedRectangleGenerator(maxCanvasHeight, maxCanvasWidth);
             default:
                 throw new ArgumentException("Invalid 'type' value");
         }
