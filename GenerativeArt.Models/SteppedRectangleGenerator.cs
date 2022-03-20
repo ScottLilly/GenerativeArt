@@ -51,7 +51,7 @@ public class SteppedRectangleGenerator : IRectangleGenerator
     {
         if (_latestRectangle == null)
         {
-            return 1;
+            return Randomizer.GetRandomNumberBetween(1, _canvasMaxHeight / 20);
         }
 
         // Current rectangle goes below canvas bottom
@@ -77,7 +77,7 @@ public class SteppedRectangleGenerator : IRectangleGenerator
     {
         if (_latestRectangle == null)
         {
-            return 1;
+            return Randomizer.GetRandomNumberBetween(1, _canvasMaxWidth / 20);
         }
 
         // Current rectangle goes past canvas right
