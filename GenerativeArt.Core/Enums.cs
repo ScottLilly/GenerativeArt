@@ -8,4 +8,15 @@ public static class Enums
         Rectangle,
         Ellipse
     }
+    public enum LeftRightDirection
+    {
+        MoveToLeft,
+        MoveToRight
+    }
+
+    public enum TopBottomDirection
+    {
+        MoveToTop,
+        MoveToBottom
+    }
 }
