@@ -4,7 +4,8 @@ public enum ShapeType
 {
     Unknown,
     Rectangle,
-    Ellipse
+    Ellipse,
+    Tile
 }
 public enum LeftRightDirection
 {

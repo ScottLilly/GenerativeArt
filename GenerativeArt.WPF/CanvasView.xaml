@@ -48,6 +48,65 @@
                 </Ellipse>
             </Canvas>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type models:TileShape}">
+            <Canvas>
+                <!-- Top -->
+                <Line X1="{Binding CenterCoordinate}" Y1="{Binding MinCoordinate}"
+                      X2="{Binding CenterCoordinate}" Y2="{Binding CenterCoordinate}"
+                      Visibility="{Binding DisplayTopLine, Converter={StaticResource BooleanToVisibilityConverter}}"
+                      Canvas.Top="{Binding Top}"
+                      Canvas.Left="{Binding Left}"
+                      Stroke="Black"
+                      StrokeThickness="2"/>
+                <!-- Left -->
+                <Line X1="{Binding MinCoordinate}" Y1="{Binding CenterCoordinate}"
+                      X2="{Binding CenterCoordinate}" Y2="{Binding CenterCoordinate}"
+                      Visibility="{Binding DisplayLeftLine, Converter={StaticResource BooleanToVisibilityConverter}}"
+                      Canvas.Top="{Binding Top}"
+                      Canvas.Left="{Binding Left}"
+                      Stroke="Black"
+                      StrokeThickness="2"/>
+                <!-- Bottom -->
+                <Line X1="{Binding CenterCoordinate}" Y1="{Binding CenterCoordinate}"
+                      X2="{Binding CenterCoordinate}" Y2="{Binding MaxCoordinate}"
+                      Visibility="{Binding DisplayBottomLine, Converter={StaticResource BooleanToVisibilityConverter}}"
+                      Canvas.Top="{Binding Top}"
+                      Canvas.Left="{Binding Left}"
+                      Stroke="Black"
+                      StrokeThickness="2"/>
+                <!-- Right -->
+                <Line X1="{Binding CenterCoordinate}" Y1="{Binding CenterCoordinate}"
+                      X2="{Binding MaxCoordinate}" Y2="{Binding CenterCoordinate}"
+                      Visibility="{Binding DisplayRightLine, Converter={StaticResource BooleanToVisibilityConverter}}"
+                      Canvas.Top="{Binding Top}"
+                      Canvas.Left="{Binding Left}"
+                      Stroke="Black"
+                      StrokeThickness="2"/>
+                <!-- Center symbol -->
+                <Ellipse Height="{Binding CenterShapeSize}"
+                         Width="{Binding CenterShapeSize}"
+                         Fill="{Binding FillColor}"
+                         Visibility="{Binding DisplayCenterShape, Converter={StaticResource BooleanToVisibilityConverter}}"
+                         Canvas.Top="{Binding CenterShapeTop, Mode=OneWay}"
+                         Canvas.Left="{Binding CenterShapeLeft, Mode=OneWay}"
+                         StrokeThickness="1"
+                         Stroke="Black"/>
+                <!--<Rectangle Height="{Binding CenterShapeSize}"
+                         Width="{Binding CenterShapeSize}"
+                         Fill="{Binding FillColor}"
+                         Visibility="{Binding DisplayCenterShape, Converter={StaticResource BooleanToVisibilityConverter}}"
+                         Canvas.Top="{Binding CenterShapeTop, Mode=OneWay}"
+                         Canvas.Left="{Binding CenterShapeLeft, Mode=OneWay}"
+                         RenderTransformOrigin="0.5, 0.5"
+                         StrokeThickness="1"
+                         Stroke="Black">
+                    <Rectangle.RenderTransform>
+                        <RotateTransform Angle="45"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>-->
+            </Canvas>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
