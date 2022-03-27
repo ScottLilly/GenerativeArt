@@ -22,16 +22,16 @@ public class CanvasViewModel
         Width = 800;
         MaximumNumberOfShapesOnCanvas = 0;
 
-        //_rectangleGenerator =
-        //    ShapeGeneratorFactory.GetRectangleGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
-
         _rectangleGenerator =
-            ShapeGeneratorFactory.GetRectangleGenerator(ShapeGeneratorFactory.GeneratorType.Stepped, Height, Width);
+            ShapeGeneratorFactory.GetRectangleGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
+
+        //_rectangleGenerator =
+        //    ShapeGeneratorFactory.GetRectangleGenerator(ShapeGeneratorFactory.GeneratorType.Stepped, Height, Width);
         _ellipseGenerator =
             ShapeGeneratorFactory.GetEllipseGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
 
         _tileGenerator =
-            ShapeGeneratorFactory.GetTileGenerator(Height, Width, 40);
+            ShapeGeneratorFactory.GetTileGenerator(Height, Width, 30);
     }
 
     public void ClearShapes()
