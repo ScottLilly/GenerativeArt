@@ -30,7 +30,7 @@ public class ConnectedTilesGenerator : ITileGenerator
                 var tile = new TileShape
                 {
                     FillColor = Randomizer.GetRandomColor(),
-                    CenterShapeSize = 8,
+                    CenterShapeSize = _tileSizeInPixels / 3,
                     Size = _tileSizeInPixels,
                     Top = row * _tileSizeInPixels,
                     Left = col * _tileSizeInPixels,

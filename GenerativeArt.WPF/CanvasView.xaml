@@ -83,6 +83,7 @@
                       Canvas.Left="{Binding Left}"
                       Stroke="Black"
                       StrokeThickness="2"/>
+                <!-- Center symbol -->
                 <Ellipse Height="{Binding CenterShapeSize}"
                          Width="{Binding CenterShapeSize}"
                          Fill="{Binding FillColor}"
@@ -91,6 +92,19 @@
                          Canvas.Left="{Binding CenterShapeLeft, Mode=OneWay}"
                          StrokeThickness="1"
                          Stroke="Black"/>
+                <!--<Rectangle Height="{Binding CenterShapeSize}"
+                         Width="{Binding CenterShapeSize}"
+                         Fill="{Binding FillColor}"
+                         Visibility="{Binding DisplayCenterShape, Converter={StaticResource BooleanToVisibilityConverter}}"
+                         Canvas.Top="{Binding CenterShapeTop, Mode=OneWay}"
+                         Canvas.Left="{Binding CenterShapeLeft, Mode=OneWay}"
+                         RenderTransformOrigin="0.5, 0.5"
+                         StrokeThickness="1"
+                         Stroke="Black">
+                    <Rectangle.RenderTransform>
+                        <RotateTransform Angle="45"/>
+                    </Rectangle.RenderTransform>
+                </Rectangle>-->
             </Canvas>
         </DataTemplate>
     </Window.Resources>

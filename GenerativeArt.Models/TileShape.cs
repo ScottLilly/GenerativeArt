@@ -7,9 +7,9 @@ public class TileShape : BaseShape
     public override ShapeType Type =>
         ShapeType.Tile;
 
-    public int Size { get; set; }
+    public int Size { get; init; }
 
-    public int CenterShapeSize { get; set; }
+    public int CenterShapeSize { get; init; }
     public int CenterShapeTop => Top + ((Size - CenterShapeSize) / 2);
     public int CenterShapeLeft => Left + ((Size - CenterShapeSize) / 2);
 

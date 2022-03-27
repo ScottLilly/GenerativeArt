@@ -31,7 +31,7 @@ public class CanvasViewModel
             ShapeGeneratorFactory.GetEllipseGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
 
         _tileGenerator =
-            ShapeGeneratorFactory.GetTileGenerator(Height, Width, 20);
+            ShapeGeneratorFactory.GetTileGenerator(Height, Width, 40);
     }
 
     public void ClearShapes()
