@@ -4,6 +4,7 @@
              StartupUri="CanvasView.xaml">
 
     <Application.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Application.Resources>
 
 </Application>

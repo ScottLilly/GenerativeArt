@@ -7,7 +7,8 @@ public static class ShapeGeneratorFactory
     public enum GeneratorType
     {
         Random,
-        Stepped
+        Stepped,
+        Grid
     }
 
     public static IRectangleGenerator GetRectangleGenerator(GeneratorType type,
@@ -34,5 +35,10 @@ public static class ShapeGeneratorFactory
             default:
                 throw new ArgumentException("Invalid 'type' value");
         }
+    }
+
+    public static ITileGenerator GetTileGenerator(int maxCanvasHeight, int maxCanvasWidth, int tileSizeInPixels)
+    {
+        return new ConnectedTilesGenerator(maxCanvasHeight, maxCanvasWidth, tileSizeInPixels);
     }
 }

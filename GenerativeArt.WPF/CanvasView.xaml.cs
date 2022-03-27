@@ -25,6 +25,7 @@ public partial class CanvasView : Window
 
         _userInputActions.Add(Key.C, () => AddEllipse_OnClick(this, new RoutedEventArgs()));
         _userInputActions.Add(Key.R, () => AddRectangle_OnClick(this, new RoutedEventArgs()));
+        _userInputActions.Add(Key.T, () => AddTiles_OnClick(this, new RoutedEventArgs()));
     }
 
     private void ClearShapes_OnClick(object sender, RoutedEventArgs e)
@@ -76,6 +77,11 @@ public partial class CanvasView : Window
     private void AddEllipse_OnClick(object sender, RoutedEventArgs e)
     {
         VM.AddEllipse();
+    }
+
+    private void AddTiles_OnClick(object sender, RoutedEventArgs e)
+    {
+        VM.AddTiles();
     }
 
     private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)

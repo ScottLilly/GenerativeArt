@@ -8,6 +8,7 @@ public class CanvasViewModel
 {
     private readonly IRectangleGenerator _rectangleGenerator;
     private readonly IEllipseGenerator _ellipseGenerator;
+    private readonly ITileGenerator _tileGenerator;
 
     public int Height { get; set; }
     public int Width { get; set; }
@@ -23,10 +24,14 @@ public class CanvasViewModel
 
         //_rectangleGenerator =
         //    ShapeGeneratorFactory.GetRectangleGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
+
         _rectangleGenerator =
             ShapeGeneratorFactory.GetRectangleGenerator(ShapeGeneratorFactory.GeneratorType.Stepped, Height, Width);
         _ellipseGenerator =
             ShapeGeneratorFactory.GetEllipseGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
+
+        _tileGenerator =
+            ShapeGeneratorFactory.GetTileGenerator(Height, Width, 20);
     }
 
     public void ClearShapes()
@@ -46,6 +51,16 @@ public class CanvasViewModel
         Shapes.Add(_ellipseGenerator.GetEllipse());
 
         RemoveOldShapes();
+    }
+
+    public void AddTiles()
+    {
+        var tiles = _tileGenerator.GetTiles();
+
+        foreach (TileShape tile in tiles)
+        {
+            Shapes.Add(tile);
+        }
     }
 
     private void RemoveOldShapes()
