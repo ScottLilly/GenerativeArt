@@ -29,6 +29,8 @@ public class ConnectedTilesGenerator : ITileGenerator
             {
                 var tile = new TileShape
                 {
+                    Row = row,
+                    Column = col,
                     FillColor = Randomizer.GetRandomColor(),
                     CenterShapeSize = _tileSizeInPixels / 3,
                     Size = _tileSizeInPixels,
@@ -39,6 +41,33 @@ public class ConnectedTilesGenerator : ITileGenerator
                     DisplayBottomLine = row != _maxRowIndex && Randomizer.GetRandomNumberBetween(0, 1) == 1,
                     DisplayRightLine = col != _maxColumnIndex && Randomizer.GetRandomNumberBetween(0, 1) == 1
                 };
+
+                // Clean up edges and connections with prior tiles
+                if (row == 0)
+                {
+                    tile.DisplayTopLine = false;
+                }
+                else
+                {
+                    var tileAbove = tileShapes.First(t => t.Row == row - 1 && t.Column == col);
+                    tile.DisplayTopLine = tileAbove.DisplayBottomLine;
+                }
+
+                if (row == _maxRowIndex - 1)
+                {
+                    tile.DisplayBottomLine = false;
+                }
+
+                if (col > 0)
+                {
+                    var tileLeft = tileShapes.First(t => t.Row == row && t.Column == (col - 1));
+                    tile.DisplayLeftLine = tileLeft.DisplayRightLine;
+                }
+
+                if (col == _maxColumnIndex - 1)
+                {
+                    tile.DisplayRightLine = false;
+                }
 
                 tileShapes.Add(tile);
             }

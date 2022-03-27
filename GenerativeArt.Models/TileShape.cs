@@ -8,6 +8,8 @@ public class TileShape : BaseShape
         ShapeType.Tile;
 
     public int Size { get; init; }
+    public int Row { get; init; }
+    public int Column { get; init; }
 
     public int CenterShapeSize { get; init; }
     public int CenterShapeTop => Top + ((Size - CenterShapeSize) / 2);
