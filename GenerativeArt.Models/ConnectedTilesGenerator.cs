@@ -31,8 +31,7 @@ public class ConnectedTilesGenerator : ITileGenerator
                 {
                     FillColor = Randomizer.GetRandomColor(),
                     CenterShapeSize = 8,
-                    Height = _tileSizeInPixels,
-                    Width = _tileSizeInPixels,
+                    Size = _tileSizeInPixels,
                     Top = row * _tileSizeInPixels,
                     Left = col * _tileSizeInPixels,
                     DisplayTopLine = row != 0 && Randomizer.GetRandomNumberBetween(0, 1) == 1,

@@ -7,17 +7,20 @@ public class TileShape : BaseShape
     public override ShapeType Type =>
         ShapeType.Tile;
 
-    public int Height { get; init; }
-    public int Width { get; init; }
+    public int Size { get; set; }
 
     public int CenterShapeSize { get; set; }
-    public int CenterShapeTop => Top + ((Height - CenterShapeSize - 1) / 2);
-    public int CenterShapeLeft => Left + ((Width - CenterShapeSize - 1) / 2);
+    public int CenterShapeTop => Top + ((Size - CenterShapeSize) / 2);
+    public int CenterShapeLeft => Left + ((Size - CenterShapeSize) / 2);
 
     public bool DisplayTopLine { get; set; }
     public bool DisplayLeftLine { get; set; }
     public bool DisplayBottomLine { get; set; }
     public bool DisplayRightLine { get; set; }
+
+    public int MinCoordinate => 0;
+    public int CenterCoordinate => Size / 2;
+    public int MaxCoordinate => Size;
 
     public bool DisplayCenterShape =>
         DisplayTopLine || DisplayLeftLine || DisplayBottomLine || DisplayRightLine;

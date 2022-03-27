@@ -52,32 +52,32 @@
         <DataTemplate DataType="{x:Type models:TileShape}">
             <Canvas>
                 <!-- Top -->
-                <Line X1="9" Y1="0"
-                      X2="9" Y2="9"
+                <Line X1="{Binding CenterCoordinate}" Y1="{Binding MinCoordinate}"
+                      X2="{Binding CenterCoordinate}" Y2="{Binding CenterCoordinate}"
                       Visibility="{Binding DisplayTopLine, Converter={StaticResource BooleanToVisibilityConverter}}"
                       Canvas.Top="{Binding Top}"
                       Canvas.Left="{Binding Left}"
                       Stroke="Black"
                       StrokeThickness="2"/>
                 <!-- Left -->
-                <Line X1="0" Y1="9"
-                      X2="9" Y2="9"
+                <Line X1="{Binding MinCoordinate}" Y1="{Binding CenterCoordinate}"
+                      X2="{Binding CenterCoordinate}" Y2="{Binding CenterCoordinate}"
                       Visibility="{Binding DisplayLeftLine, Converter={StaticResource BooleanToVisibilityConverter}}"
                       Canvas.Top="{Binding Top}"
                       Canvas.Left="{Binding Left}"
                       Stroke="Black"
                       StrokeThickness="2"/>
                 <!-- Bottom -->
-                <Line X1="9" Y1="10"
-                      X2="9" Y2="19"
+                <Line X1="{Binding CenterCoordinate}" Y1="{Binding CenterCoordinate}"
+                      X2="{Binding CenterCoordinate}" Y2="{Binding MaxCoordinate}"
                       Visibility="{Binding DisplayBottomLine, Converter={StaticResource BooleanToVisibilityConverter}}"
                       Canvas.Top="{Binding Top}"
                       Canvas.Left="{Binding Left}"
                       Stroke="Black"
                       StrokeThickness="2"/>
                 <!-- Right -->
-                <Line X1="10" Y1="9"
-                      X2="19" Y2="9"
+                <Line X1="{Binding CenterCoordinate}" Y1="{Binding CenterCoordinate}"
+                      X2="{Binding MaxCoordinate}" Y2="{Binding CenterCoordinate}"
                       Visibility="{Binding DisplayRightLine, Converter={StaticResource BooleanToVisibilityConverter}}"
                       Canvas.Top="{Binding Top}"
                       Canvas.Left="{Binding Left}"
