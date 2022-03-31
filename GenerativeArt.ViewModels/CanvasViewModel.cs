@@ -18,8 +18,8 @@ public class CanvasViewModel
 
     public CanvasViewModel()
     {
-        Height = 800;
-        Width = 800;
+        Height = 2500;
+        Width = 2500;
         MaximumNumberOfShapesOnCanvas = 0;
 
         _rectangleGenerator =
@@ -31,7 +31,7 @@ public class CanvasViewModel
             ShapeGeneratorFactory.GetEllipseGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
 
         _tileGenerator =
-            ShapeGeneratorFactory.GetTileGenerator(Height, Width, 30);
+            ShapeGeneratorFactory.GetTileGenerator(Height, Width, 50);
     }
 
     public void ClearShapes()

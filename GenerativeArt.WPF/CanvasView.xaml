@@ -134,18 +134,22 @@
             </MenuItem>
         </Menu>
 
-        <Canvas Grid.Row="1" Grid.Column="0"
-                x:Name="ShapeCanvas"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Margin="5,5,5,5"
-                Background="LightGray"
-                Height="{Binding Height}"
-                Width="{Binding Width}">
+        <Viewbox Grid.Row="1" Grid.Column="0"
+                 Height="800" Width="800">
 
-            <ItemsControl ItemsSource="{Binding Shapes}"/>
+            <Canvas x:Name="ShapeCanvas"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="5,5,5,5"
+                    Background="LightGray"
+                    Height="{Binding Height}"
+                    Width="{Binding Width}">
 
-        </Canvas>
+                <ItemsControl ItemsSource="{Binding Shapes}"/>
+
+            </Canvas>
+
+        </Viewbox>
 
         <StackPanel Grid.Row="1" Grid.Column="1"
                     Orientation="Vertical">
