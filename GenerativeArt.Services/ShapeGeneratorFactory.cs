@@ -41,4 +41,9 @@ public static class ShapeGeneratorFactory
     {
         return new ConnectedTilesGenerator(maxCanvasHeight, maxCanvasWidth, tileSizeInPixels);
     }
+
+    public static IConnectedLineGenerator GetConnectedLineGenerator(int maxCanvasHeight, int maxCanvasWidth)
+    {
+        return new ConnectedLineGenerator(maxCanvasWidth, maxCanvasHeight);
+    }
 }

@@ -51,6 +51,15 @@
             </Canvas>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type models:LineShape}">
+            <Canvas>
+                <Line X1="{Binding X1}" Y1="{Binding Y1}"
+                      X2="{Binding X2}" Y2="{Binding Y2}"
+                      Stroke="Black"
+                      StrokeThickness="{Binding StrokeThickness}"/>
+            </Canvas>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type models:TileShape}">
             <Canvas>
                 <!-- Top -->

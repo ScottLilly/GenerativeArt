@@ -10,6 +10,7 @@ public class CanvasViewModel
     private readonly IRectangleGenerator _steppedRectangleGenerator;
     private readonly IEllipseGenerator _ellipseGenerator;
     private readonly ITileGenerator _tileGenerator;
+    private readonly IConnectedLineGenerator _connectedLineGenerator;
 
     public int Height { get; }
     public int Width { get; }
@@ -31,6 +32,8 @@ public class CanvasViewModel
             ShapeGeneratorFactory.GetEllipseGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
         _tileGenerator =
             ShapeGeneratorFactory.GetTileGenerator(Height, Width, 50);
+        _connectedLineGenerator =
+            ShapeGeneratorFactory.GetConnectedLineGenerator(Height, Width);
     }
 
     public void ClearShapes()
@@ -60,6 +63,11 @@ public class CanvasViewModel
         {
             Shapes.Add(tile);
         }
+    }
+
+    public void AddConnectedLine()
+    {
+        Shapes.Add(_connectedLineGenerator.GetNextLine());
     }
 
     private void RemoveOldShapes()
