@@ -6,15 +6,16 @@ namespace GenerativeArt.ViewModels;
 
 public class CanvasViewModel
 {
-    private readonly IRectangleGenerator _rectangleGenerator;
+    private readonly IRectangleGenerator _randomRectangleGenerator;
+    private readonly IRectangleGenerator _steppedRectangleGenerator;
     private readonly IEllipseGenerator _ellipseGenerator;
     private readonly ITileGenerator _tileGenerator;
 
-    public int Height { get; set; }
-    public int Width { get; set; }
+    public int Height { get; }
+    public int Width { get; }
     public ObservableCollection<IShape> Shapes { get; } =
         new ObservableCollection<IShape>();
-    public int MaximumNumberOfShapesOnCanvas { get; set; }
+    public int MaximumNumberOfShapesOnCanvas { get; }
 
     public CanvasViewModel()
     {
@@ -22,14 +23,12 @@ public class CanvasViewModel
         Width = 2500;
         MaximumNumberOfShapesOnCanvas = 0;
 
-        _rectangleGenerator =
+        _randomRectangleGenerator =
             ShapeGeneratorFactory.GetRectangleGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
-
-        //_rectangleGenerator =
-        //    ShapeGeneratorFactory.GetRectangleGenerator(ShapeGeneratorFactory.GeneratorType.Stepped, Height, Width);
+        _steppedRectangleGenerator =
+            ShapeGeneratorFactory.GetRectangleGenerator(ShapeGeneratorFactory.GeneratorType.Stepped, Height, Width);
         _ellipseGenerator =
             ShapeGeneratorFactory.GetEllipseGenerator(ShapeGeneratorFactory.GeneratorType.Random, Height, Width);
-
         _tileGenerator =
             ShapeGeneratorFactory.GetTileGenerator(Height, Width, 50);
     }
@@ -41,7 +40,7 @@ public class CanvasViewModel
 
     public void AddRectangle()
     {
-        Shapes.Add(_rectangleGenerator.GetRectangle());
+        Shapes.Add(_randomRectangleGenerator.GetRectangle());
 
         RemoveOldShapes();
     }
