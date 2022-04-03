@@ -4,6 +4,8 @@ namespace GenerativeArt.Models;
 
 public class ConnectedLineGenerator : IConnectedLineGenerator
 {
+    private const int MARGIN = 25;
+
     private enum Direction
     {
         None,
@@ -15,11 +17,9 @@ public class ConnectedLineGenerator : IConnectedLineGenerator
 
     private readonly int _maxCanvasWidth;
     private readonly int _maxCanvasHeight;
-    private int _margin = 10;
-
+    private Direction _lastDirection = Direction.None;
     private int _lastEndingX = -1;
     private int _lastEndingY = -1;
-    private Direction _lastDirection = Direction.None;
 
     public ConnectedLineGenerator(int maxCanvasWidth, int maxCanvasHeight)
     {
@@ -29,21 +29,18 @@ public class ConnectedLineGenerator : IConnectedLineGenerator
 
     public LineShape GetNextLine()
     {
-        // Get starting random X and Y coordinates
         int startingX =
             _lastEndingX == -1
-                ? Randomizer.GetRandomNumberBetween(_margin, _maxCanvasWidth - _margin)
+                ? Randomizer.GetRandomNumberBetween(MARGIN, _maxCanvasWidth - MARGIN)
                 : _lastEndingX;
         int startingY =
             _lastEndingY == -1
-                ? Randomizer.GetRandomNumberBetween(_margin, _maxCanvasHeight - _margin)
+                ? Randomizer.GetRandomNumberBetween(MARGIN, _maxCanvasHeight - MARGIN)
                 : _lastEndingY;
 
-        // Pick direction
         var direction = GetRandomDirection();
         _lastDirection = direction;
 
-        // Get random length (not going past margin)
         int length = Randomizer.GetRandomNumberBetween(25, 250);
 
         int endingX;
@@ -71,13 +68,12 @@ public class ConnectedLineGenerator : IConnectedLineGenerator
                 throw new ArgumentException("direction");
         }
 
-        endingX = Math.Min(Math.Max(_margin, endingX), _maxCanvasWidth - _margin);
-        endingY = Math.Min(Math.Max(_margin, endingY), _maxCanvasHeight - _margin);
+        endingX = Math.Min(Math.Max(MARGIN, endingX), _maxCanvasWidth - MARGIN);
+        endingY = Math.Min(Math.Max(MARGIN, endingY), _maxCanvasHeight - MARGIN);
 
         _lastEndingX = endingX;
         _lastEndingY = endingY;
 
-        // Return LineShape
         return new LineShape
         {
             X1 = startingX, Y1 = startingY,
@@ -87,21 +83,21 @@ public class ConnectedLineGenerator : IConnectedLineGenerator
 
     private Direction GetRandomDirection()
     {
-        var rand = Randomizer.GetRandomNumberBetween(1, 4);
+        List<Direction> validDirections =
+            new List<Direction>();
 
-        switch (rand)
+        if (_lastDirection is Direction.Up or Direction.Down or Direction.None)
         {
-            case 1:
-                return Direction.Up;
-            case 2:
-                return Direction.Right;
-            case 3:
-                return Direction.Down;
-            case 4:
-                return Direction.Left;
-            default:
-                throw new ArgumentOutOfRangeException("rand");
+            validDirections.Add(Direction.Left);
+            validDirections.Add(Direction.Right);
         }
-    }
 
+        if (_lastDirection is Direction.Left or Direction.Right or Direction.None)
+        {
+            validDirections.Add(Direction.Up);
+            validDirections.Add(Direction.Down);
+        }
+
+        return validDirections[Randomizer.GetRandomNumberBetween(0, validDirections.Count - 1)];
+    }
 }
