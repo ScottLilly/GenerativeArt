@@ -4,19 +4,21 @@ namespace GenerativeArt.Models;
 
 public class ConnectedTilesGenerator : ITileGenerator
 {
-    private readonly int _maxCanvasHeight;
-    private readonly int _maxCanvasWidth;
     private readonly int _tileSizeInPixels;
-    private readonly int _maxRowIndex;
-    private readonly int _maxColumnIndex;
+    private int _maxRowIndex;
+    private int _maxColumnIndex;
 
     public ConnectedTilesGenerator(int maxCanvasHeight, int maxCanvasWidth, int tileSizeInPixels)
     {
-        _maxCanvasHeight = maxCanvasHeight;
-        _maxCanvasWidth = maxCanvasWidth;
         _tileSizeInPixels = tileSizeInPixels;
         _maxRowIndex = maxCanvasHeight / tileSizeInPixels;
         _maxColumnIndex = maxCanvasWidth / tileSizeInPixels;
+    }
+
+    public void SetCanvasSize(int width, int height)
+    {
+        _maxRowIndex = height / _tileSizeInPixels;
+        _maxColumnIndex = width / _tileSizeInPixels;
     }
 
     public List<TileShape> GetTiles()

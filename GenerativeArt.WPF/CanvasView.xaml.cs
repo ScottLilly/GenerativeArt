@@ -99,4 +99,34 @@ public partial class CanvasView : Window
             e.Handled = true;
         }
     }
+
+    private void SetCanvasSize500x500_OnClick(object sender, RoutedEventArgs e)
+    {
+        VM.SetCanvasSize(500, 500);
+    }
+
+    private void SetCanvasSize1000x1000_OnClick(object sender, RoutedEventArgs e)
+    {
+        VM.SetCanvasSize(1000, 1000);
+    }
+
+    private void SetCanvasSize2500x2500_OnClick(object sender, RoutedEventArgs e)
+    {
+        VM.SetCanvasSize(2500, 2500);
+    }
+
+    private void SetCanvasBackgroundWhite_OnClick(object sender, RoutedEventArgs e)
+    {
+        VM.SetCanvasBackgroundColor("White");
+    }
+
+    private void SetCanvasBackgroundLightGray_OnClick(object sender, RoutedEventArgs e)
+    {
+        VM.SetCanvasBackgroundColor("LightGray");
+    }
+
+    private void SetCanvasBackgroundTransparent_OnClick(object sender, RoutedEventArgs e)
+    {
+        VM.SetCanvasBackgroundColor("Transparent");
+    }
 }

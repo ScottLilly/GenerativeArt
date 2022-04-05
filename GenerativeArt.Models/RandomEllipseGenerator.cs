@@ -4,13 +4,19 @@ namespace GenerativeArt.Models;
 
 public class RandomEllipseGenerator : IEllipseGenerator
 {
-    private readonly int _maxCanvasHeight;
-    private readonly int _maxCanvasWidth;
+    private int _maxCanvasHeight;
+    private int _maxCanvasWidth;
 
     public RandomEllipseGenerator(int maxCanvasHeight, int maxCanvasWidth)
     {
         _maxCanvasHeight = maxCanvasHeight;
         _maxCanvasWidth = maxCanvasWidth;
+    }
+
+    public void SetCanvasSize(int width, int height)
+    {
+        _maxCanvasWidth = width;
+        _maxCanvasHeight = height;
     }
 
     public EllipseShape GetEllipse()

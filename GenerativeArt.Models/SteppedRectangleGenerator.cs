@@ -5,8 +5,8 @@ namespace GenerativeArt.Models;
 
 public class SteppedRectangleGenerator : IRectangleGenerator
 {
-    private readonly int _canvasMaxHeight;
-    private readonly int _canvasMaxWidth;
+    private int _maxCanvasHeight;
+    private int _maxCanvasWidth;
 
     private LeftRightDirection _leftRightDirection = LeftRightDirection.MoveToRight;
     private TopBottomDirection _topBottomDirection = TopBottomDirection.MoveToBottom;
@@ -18,10 +18,16 @@ public class SteppedRectangleGenerator : IRectangleGenerator
     private int LatestRectangleMidpointY() =>
         _latestRectangle.Top + (_latestRectangle.Height / 2);
 
-    public SteppedRectangleGenerator(int canvasMaxHeight, int canvasMaxWidth)
+    public SteppedRectangleGenerator(int maxCanvasHeight, int maxCanvasWidth)
     {
-        _canvasMaxHeight = canvasMaxHeight;
-        _canvasMaxWidth = canvasMaxWidth;
+        _maxCanvasHeight = maxCanvasHeight;
+        _maxCanvasWidth = maxCanvasWidth;
+    }
+
+    public void SetCanvasSize(int width, int height)
+    {
+        _maxCanvasWidth = width;
+        _maxCanvasHeight = height;
     }
 
     public RectangleShape GetRectangle()
@@ -51,12 +57,12 @@ public class SteppedRectangleGenerator : IRectangleGenerator
     {
         if (_latestRectangle == null)
         {
-            return Randomizer.GetRandomNumberBetween(1, _canvasMaxHeight / 20);
+            return Randomizer.GetRandomNumberBetween(1, _maxCanvasHeight / 20);
         }
 
         // Current rectangle goes below canvas bottom
         if (_topBottomDirection == TopBottomDirection.MoveToBottom &&
-            LatestRectangleMidpointY() + rectangleHeight > _canvasMaxHeight)
+            LatestRectangleMidpointY() + rectangleHeight > _maxCanvasHeight)
         {
             _topBottomDirection = TopBottomDirection.MoveToTop;
         }
@@ -77,12 +83,12 @@ public class SteppedRectangleGenerator : IRectangleGenerator
     {
         if (_latestRectangle == null)
         {
-            return Randomizer.GetRandomNumberBetween(1, _canvasMaxWidth / 20);
+            return Randomizer.GetRandomNumberBetween(1, _maxCanvasWidth / 20);
         }
 
         // Current rectangle goes past canvas right
         if (_leftRightDirection == LeftRightDirection.MoveToRight &&
-            LatestRectangleMidpointX() + rectangleWidth > _canvasMaxWidth)
+            LatestRectangleMidpointX() + rectangleWidth > _maxCanvasWidth)
         {
             _leftRightDirection = LeftRightDirection.MoveToLeft;
         }

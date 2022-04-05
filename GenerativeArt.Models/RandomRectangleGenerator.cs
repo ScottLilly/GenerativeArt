@@ -4,13 +4,19 @@ namespace GenerativeArt.Models;
 
 public class RandomRectangleGenerator : IRectangleGenerator
 {
-    private readonly int _canvasMaxHeight;
-    private readonly int _canvasMaxWidth;
+    private int _maxCanvasHeight;
+    private int _maxCanvasWidth;
 
-    public RandomRectangleGenerator(int canvasMaxHeight, int canvasMaxWidth)
+    public RandomRectangleGenerator(int maxCanvasHeight, int maxCanvasWidth)
     {
-        _canvasMaxHeight = canvasMaxHeight;
-        _canvasMaxWidth = canvasMaxWidth;
+        _maxCanvasHeight = maxCanvasHeight;
+        _maxCanvasWidth = maxCanvasWidth;
+    }
+
+    public void SetCanvasSize(int width, int height)
+    {
+        _maxCanvasWidth = width;
+        _maxCanvasHeight = height;
     }
 
     public RectangleShape GetRectangle()
@@ -22,8 +28,8 @@ public class RandomRectangleGenerator : IRectangleGenerator
 
         int max =
             (int)Math.Max(
-                (_canvasMaxHeight - maxRectangleDimension),
-                (_canvasMaxWidth - maxRectangleDimension));
+                (_maxCanvasHeight - maxRectangleDimension),
+                (_maxCanvasWidth - maxRectangleDimension));
 
         var edgeOffset = (int)(maxRectangleDimension / 2);
 

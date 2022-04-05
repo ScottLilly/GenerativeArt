@@ -1,10 +1,12 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using GenerativeArt.Models;
 using GenerativeArt.Services;
 
 namespace GenerativeArt.ViewModels;
 
-public class CanvasViewModel
+public class CanvasViewModel : INotifyPropertyChanged
 {
     private readonly IRectangleGenerator _randomRectangleGenerator;
     private readonly IRectangleGenerator _steppedRectangleGenerator;
@@ -12,14 +14,18 @@ public class CanvasViewModel
     private readonly ITileGenerator _tileGenerator;
     private readonly IConnectedLineGenerator _connectedLineGenerator;
 
-    public int Height { get; }
-    public int Width { get; }
+    public int Height { get; private set; }
+    public int Width { get; private set; }
+    public string BackgroundColor { get; private set; }
     public ObservableCollection<IShape> Shapes { get; } =
         new ObservableCollection<IShape>();
     public int MaximumNumberOfShapesOnCanvas { get; }
 
+    public event PropertyChangedEventHandler? PropertyChanged;
+
     public CanvasViewModel()
     {
+        BackgroundColor = "LightGray";
         Height = 2500;
         Width = 2500;
         MaximumNumberOfShapesOnCanvas = 0;
@@ -34,6 +40,30 @@ public class CanvasViewModel
             ShapeGeneratorFactory.GetTileGenerator(Height, Width, 50);
         _connectedLineGenerator =
             ShapeGeneratorFactory.GetConnectedLineGenerator(Height, Width);
+    }
+
+    public void SetCanvasSize(int width, int height)
+    {
+        if (width == Width || height == Height)
+        {
+            return;
+        }
+
+        Width = width;
+        Height = height;
+
+        Shapes.Clear();
+
+        _randomRectangleGenerator.SetCanvasSize(width, height);
+        _steppedRectangleGenerator.SetCanvasSize(width, height);
+        _ellipseGenerator.SetCanvasSize(width, height);
+        _tileGenerator.SetCanvasSize(width, height);
+        _connectedLineGenerator.SetCanvasSize(width, height);
+    }
+
+    public void SetCanvasBackgroundColor(string color)
+    {
+        BackgroundColor = color;
     }
 
     public void ClearShapes()
