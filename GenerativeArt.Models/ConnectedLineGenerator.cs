@@ -15,8 +15,8 @@ public class ConnectedLineGenerator : IConnectedLineGenerator
         Right
     }
 
-    private readonly int _maxCanvasWidth;
-    private readonly int _maxCanvasHeight;
+    private int _maxCanvasWidth;
+    private int _maxCanvasHeight;
     private Direction _lastDirection = Direction.None;
     private int _lastEndingX = -1;
     private int _lastEndingY = -1;
@@ -25,6 +25,12 @@ public class ConnectedLineGenerator : IConnectedLineGenerator
     {
         _maxCanvasWidth = maxCanvasWidth;
         _maxCanvasHeight = maxCanvasHeight;
+    }
+
+    public void SetCanvasSize(int width, int height)
+    {
+        _maxCanvasWidth = width;
+        _maxCanvasHeight = height;
     }
 
     public LineShape GetNextLine()

@@ -141,16 +141,36 @@
                 <MenuItem Header="Exit"
                           Click="Exit_OnClick"/>
             </MenuItem>
+            <MenuItem Header="Preferences">
+                <MenuItem Header="Canvas Size">
+                    <MenuItem Header="500 x 500"
+                              Click="SetCanvasSize500x500_OnClick"/>
+                    <MenuItem Header="1000 x 1000"
+                              Click="SetCanvasSize1000x1000_OnClick"/>
+                    <MenuItem Header="2500 x 2500"
+                              Click="SetCanvasSize2500x2500_OnClick"/>
+                </MenuItem>
+                <MenuItem Header="Canvas Background Color">
+                    <MenuItem Header="White"
+                              Click="SetCanvasBackgroundWhite_OnClick"/>
+                    <MenuItem Header="LightGray"
+                              Click="SetCanvasBackgroundLightGray_OnClick"/>
+                    <MenuItem Header="Transparent"
+                              Click="SetCanvasBackgroundTransparent_OnClick"/>
+                </MenuItem>
+            </MenuItem>
         </Menu>
 
         <Viewbox Grid.Row="1" Grid.Column="0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
                  Height="800" Width="800">
 
             <Canvas x:Name="ShapeCanvas"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Margin="5,5,5,5"
-                    Background="LightGray"
+                    Background="{Binding BackgroundColor}"
                     Height="{Binding Height}"
                     Width="{Binding Width}">
 
@@ -160,14 +180,6 @@
 
         </Viewbox>
 
-        <StackPanel Grid.Row="1" Grid.Column="1"
-                    Orientation="Vertical">
-            <Button Content="Add Rectangle"
-                    Click="AddRectangle_OnClick"/>
-            <Button Content="Add Ellipse"
-                    Click="AddEllipse_OnClick"/>
-
-        </StackPanel>
     </Grid>
 
 </Window>
