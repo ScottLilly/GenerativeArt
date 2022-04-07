@@ -94,14 +94,31 @@ public class ConnectedLineGenerator : IConnectedLineGenerator
 
         if (_lastDirection is Direction.Up or Direction.Down or Direction.None)
         {
-            validDirections.Add(Direction.Left);
-            validDirections.Add(Direction.Right);
+            if (_lastEndingX == -1 ||
+                _lastEndingX != -1 && _lastEndingX != MARGIN)
+            {
+                validDirections.Add(Direction.Left);
+            }
+
+            if (_lastEndingX == -1 ||
+                _lastEndingX != -1 && _lastEndingX != _maxCanvasWidth - MARGIN)
+            {
+                validDirections.Add(Direction.Right);
+            }
         }
 
         if (_lastDirection is Direction.Left or Direction.Right or Direction.None)
         {
-            validDirections.Add(Direction.Up);
-            validDirections.Add(Direction.Down);
+            if (_lastEndingY == -1 ||
+                _lastEndingY != -1 && _lastEndingY != MARGIN)
+            {
+                validDirections.Add(Direction.Up);
+            }
+            if (_lastEndingY == -1 ||
+                _lastEndingY != -1 && _lastEndingY != _maxCanvasHeight - MARGIN)
+            {
+                validDirections.Add(Direction.Down);
+            }
         }
 
         return validDirections[Randomizer.GetRandomNumberBetween(0, validDirections.Count - 1)];
