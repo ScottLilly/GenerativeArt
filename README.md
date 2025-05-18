@@ -1,5 +1,13 @@
 # GenerativeArt
 
+<table>
+  <tbody>
+	<tr>
+	  <td>This project is inactive and has been archived to read-only mode. Please contact me if you want it reopened.</td>
+	</tr>
+  </tbody>
+</table>
+
 Build images from random or randomish values. This currently draws rectangles and circles of random sizes, colors, and orientations. It draws a tiled set of connected lines, with randomly colored circles in the middle, and connected lines 
 
 In the future, I'd like it to draw images based on values from things like weather data, stock market data, etc.
